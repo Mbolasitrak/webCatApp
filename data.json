@@ -7,6 +7,22 @@
       "quantity": 600,
       "selected": true,
       "available": true
+    },
+    {
+      "id": 2,
+      "name": "Faly8878",
+      "price": "2007",
+      "quantity": "107",
+      "selected": false,
+      "available": true
+    },
+    {
+      "name": "Rao",
+      "price": "523",
+      "quantity": "45",
+      "selected": false,
+      "available": true,
+      "id": 3
     }
   ]
 }

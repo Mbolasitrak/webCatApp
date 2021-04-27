@@ -21,6 +21,7 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.onGetAllProducts();
   }
 
   onGetAllProducts() {
@@ -89,4 +90,7 @@ export class ProductsComponent implements OnInit {
     this.router.navigateByUrl("/newProduct");
   }
 
+  onEdit(p: Product) {
+    this.router.navigateByUrl("/editProduct/"+p.id);
+  }
 }

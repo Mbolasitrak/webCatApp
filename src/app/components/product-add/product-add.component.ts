@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProductsService} from "../../services/products.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-product-add',
@@ -10,19 +11,28 @@ import {ProductsService} from "../../services/products.service";
 export class ProductAddComponent implements OnInit {
 
   productFormGroup?:FormGroup;//|null=null;
-  constructor(private fb:FormBuilder, private productsService: ProductsService) { }
+  submitted: boolean=false ;
+
+  constructor(private fb:FormBuilder, private productsService: ProductsService,private router: Router) { }
 
   ngOnInit(): void {
     this.productFormGroup=this.fb.group({
-      name:[{value:""},Validators.required],
-      price:[{value:0},Validators.required],
-      quantity:[{value:0},Validators.required],
-      selected:[{value:true},Validators.required],
-      available:[{value:true},Validators.required]
+      name:["",Validators.required],
+      price:[0,Validators.required],
+      quantity:[0,Validators.required],
+      selected:[true,Validators.required],
+      available:[true,Validators.required]
     });
   }
 
   onSaveProduct() {
+    this.submitted=true;
+    if (this.productFormGroup?.invalid) return;
     this.productsService.save(this.productFormGroup?.value)
+      .subscribe(data=>{
+        alert("Success Saving product");
+        this.router.navigateByUrl("/products");
+        }
+      );
   }
 }

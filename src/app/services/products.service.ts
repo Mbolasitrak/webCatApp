@@ -45,6 +45,14 @@ export class ProductsService{
     let host = environment.host;
     return this.http.post<Product>(host+"/products",product);
   }
+  getProducts(id:number|null):Observable<Product>{
+    let host=environment.host;
+    return this.http.get<Product>(host+"/products/"+id);
+  }
+  updateProduct(product:Product):Observable<Product>{
+    let host=environment.host;
+    return this.http.put<Product>(host+"/products/"+product.id,product);
+  }
 
 
 }
